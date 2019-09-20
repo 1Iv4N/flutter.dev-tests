@@ -1,0 +1,9 @@
+node_modules
+
+# Setup file should be created using npm run setup
+backstop.json
+
+# We don't want to track these data
+backstop_data/bitmaps_test
+backstop_data/html_report
+backstop_data/json_report

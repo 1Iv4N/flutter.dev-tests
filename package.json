@@ -1,0 +1,16 @@
+{
+  "name": "flutter-tests",
+  "version": "1.0.0",
+  "description": "Regresion tests playground for flutter.dev",
+  "main": "start.js",
+  "dependencies": {
+    "backstopjs": "^4.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "setup": "node start.js",
+    "test": "npm run setup && npx backstop test"
+  },
+  "author": "",
+  "license": "ISC"
+}

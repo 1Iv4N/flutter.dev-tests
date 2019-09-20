@@ -1,0 +1,46 @@
+{
+  "testUrl": "https://flutter.dev",
+  "viewports": [
+    {
+        "label": "Mobile S",
+        "width": 320,
+        "height": 568
+    },{
+        "label": "Mobile M",
+        "width": 375,
+        "height": 667
+    },
+    {
+        "label": "Mobile L",
+        "width": 411,
+        "height": 823
+    },
+    {
+        "label": "Tablet S",
+        "width": 768,
+        "height": 1024
+     },
+     {
+      "label": "Tablet L",
+      "width": 1024,
+      "height": 1366
+   },
+   {
+        "label": "Desktop",
+        "width": 1280,
+        "height": 800
+  },
+  {
+      "label": "Desktop L",
+      "width": 1920,
+      "height": 1200
+},
+  {
+        "label": "Desktop XL",
+        "width": 2560,
+        "height": 1600
+  }
+],
+  "delay": 1000,
+  "misMatchThreshold" : 0.5
+}
