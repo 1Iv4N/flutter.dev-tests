@@ -19,8 +19,9 @@
   ],
   "scripts": {
     "setup": "node start.js",
-    "test": "npm run setup && npx backstop test && npm run webhint",
-    "webhint": "hint http://flutter.dev/showcase/"
+    "test": "npm run setup && npm run test-backstop && npm run test-webhint",
+    "test-backstop": "npx backstop test",
+    "test-webhint": "npx hint http://flutter.dev/showcase/"
   },
   "author": "",
   "license": "ISC"
