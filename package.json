@@ -4,12 +4,23 @@
   "description": "Regresion tests playground for flutter.dev",
   "main": "start.js",
   "dependencies": {
-    "backstopjs": "^4.3.2"
+    "@hint/formatter-json": "^3.1.9",
+    "@hint/hint-doctype": "^3.2.9",
+    "@hint/hint-https-only": "^2.3.9",
+    "@hint/hint-minified-js": "^2.3.9",
+    "@hint/hint-no-broken-links": "^4.1.9",
+    "@hint/hint-performance-budget": "^2.3.9",
+    "backstopjs": "^4.3.2",
+    "hint": "^5.3.1"
   },
   "devDependencies": {},
+  "browserslist": [
+    "last 2 versions and not dead and >1% and not Samsung > 0 and not UCAndroid > 0"
+  ],
   "scripts": {
     "setup": "node start.js",
-    "test": "npm run setup && npx backstop test"
+    "test": "npm run setup && npx backstop test && npm run webhint",
+    "webhint": "hint http://flutter.dev/showcase/"
   },
   "author": "",
   "license": "ISC"

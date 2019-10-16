@@ -28,6 +28,10 @@ const pages = [
     {
         name: 'Flutter Security',
         path: '/security'
+    },
+    {
+        name: 'Flutter Subscribe',
+        path: '/subscribe'
     }
 ]
 

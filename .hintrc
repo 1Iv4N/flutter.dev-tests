@@ -1,0 +1,57 @@
+{
+  "connector": {
+    "name":"puppeteer"
+  },
+  "formatters":[
+      "html",
+      "json",
+      "summary"
+  ],
+  "hints": {
+        "stylesheet-limits": "warning",
+        "no-http-redirects": "warning",
+        "axe/aria": "warning",
+        "axe/color": ["warning", {
+          "color-contrast": "warning"}],
+        "axe/forms": "warning",
+        "axe/keyboard": "warning",
+        "axe/language":"warning",
+        "axe/name-role-value":["warning", {
+          "aria-hidden-focus": "warning",
+          "button-name": "warning",
+          "input-button-name": "warning",
+          "link-name": "warning"
+          }],
+        "axe/other":"warning",
+        "axe/parsing":"warning",
+        "axe/semantics":"warning",
+        "axe/sensory-and-visual-cues":"warning",
+        "axe/structure":"warning",
+        "axe/tables":"warning",
+        "axe/text-alternatives":"warning",
+        "axe/time-and-media":"warning",
+        "compat-api/css":"warning",
+        "compat-api/html":"warning",
+        "meta-viewport":"warning",
+        "disown-opener":"error",
+        "minified-js":"warning",
+        "doctype":"error",
+        "create-element-svg":"warning",
+        "no-broken-links":"error",
+        "no-bom":"warning",
+        "no-protocol-relative-urls":"warning",
+        "no-friendly-error-pages":"warning",
+        "no-vulnerable-javascript-libraries":"warning",
+        "html-checker":"warning",
+        "image-optimization-cloudinary":"warning",
+        "performance-budget":"warning",
+        "css-prefix-order":"warning",
+        "scoped-svg-styles":"warning",
+        "button-type":"warning",
+        "apple-touch-icons":"warning",
+        "meta-charset-utf-8":"warning",
+        "https-only":"warning",
+        "sri":"warning",
+        "validate-set-cookie-header":"warning"
+    }
+  }
