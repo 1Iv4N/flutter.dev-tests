@@ -1,0 +1,8 @@
+            *** Welcome to QA Automation testing ***\n
+    Please enter the next data taking into account the following considerations: \n
+    1. Enter data with the next format: $ node manager.js –s https://www.google.com -t b
+    2. s is for the staging link
+    3. t is for the type of test that you want to execute e.g: \n
+        b - Backstop
+        w - webhint
+        a - all (backstop and webhint)

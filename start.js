@@ -15,12 +15,13 @@ const pages = require('./pages.js');
  *
  * @returns {Object} JSON file with the base configuration
  */
-async function getConfigurationFile() {
-    console.log('\x1b[36m%s\x1b[0m', "Reading configuration files");
+  async function getConfigurationFile() {
 
+    console.log('\x1b[36m%s\x1b[0m', "Reading configuration file");
     let configFile = await asyncReadFile('config.json');
-
+    configFile = JSON.parse(configFile);
     return configFile;
+
   }
 
   /**
@@ -34,10 +35,12 @@ async function getConfigurationFile() {
    *
    * @returns {Object} Both base config file and Backstop config file
    */
-  async function getBackstopConfigurationFile(configFile) {
-    let backstopConfigFile = await asyncReadFile('base_config.json');
+  async function getBackstopConfigurationFile() {
 
-    return {configFile, backstopConfigFile};
+    let backstopConfigFile = await asyncReadFile('base_config.json');
+    backstopConfigFile = JSON.parse(backstopConfigFile);
+    return backstopConfigFile;
+
   }
 
 
@@ -53,15 +56,13 @@ async function getConfigurationFile() {
    *
    * @returns {Object} Object with both base config file and updated Backstop config file
    */
-  async function assignViewports({configFile, backstopConfigFile}) {
-    console.log('\x1b[36m%s\x1b[0m', "Creating viewports");
 
-    backstopConfigFile = JSON.parse(backstopConfigFile);
-    configFile = JSON.parse(configFile);
+  async function assignViewports(configFile, backstopConfigFile) {
 
-    backstopConfigFile = {...backstopConfigFile, viewports: configFile.viewports};
+    console.log('\x1b[36m%s\x1b[0m', "Adding viewports");
+    backstopConfigFile = {...backstopConfigFile, ...{viewports: configFile.viewports}};
+    return backstopConfigFile;
 
-    return {configFile, backstopConfigFile};
   }
 
   /**
@@ -77,7 +78,7 @@ async function getConfigurationFile() {
    *
    * @returns {Object} Object with updated Backstop config file
    */
-  async function createScenarios({configFile, backstopConfigFile}) {
+  async function createScenarios(configFile, backstopConfigFile,referenceUrl,testUrl) {
     console.log('\x1b[36m%s\x1b[0m', "Creating test scenarios");
 
     let scenarios = [];
@@ -85,7 +86,8 @@ async function getConfigurationFile() {
       pages.forEach(flutterPage =>{
         scenarios.push({
           label: `${flutterPage.name}.`,
-          url: `${configFile.testUrl}${flutterPage.path}`,
+          url: `${testUrl}${flutterPage.path}`,
+          referenceUrl:`${referenceUrl}${flutterPage.path}`,
           // cookiePath: `${configFile.cookiePath}`,
           delay: configFile.delay,
           misMatchThreshold: configFile.misMatchThreshold
@@ -104,20 +106,22 @@ async function getConfigurationFile() {
    * @param {Object} backstopConfigFile Updated Backstop config file to save it
    */
   async function createBackstopFile(backstopConfigFile) {
+
     console.log('\x1b[36m%s\x1b[0m', "Saving Backstop configuration file");
 
     await outputJSONSync('backstop.json', backstopConfigFile, { spaces: 2 });
+
   }
 
-  getConfigurationFile()
-    .then(getBackstopConfigurationFile)
-    .then(assignViewports)
-    .then(createScenarios)
-    .then(createBackstopFile)
-    .then(() => {
-      console.log('\x1b[36m%s\x1b[0m', "Done! Now you can run 'npm run test'");
-    })
-    .catch(err => {
-      console.log("\x1b[31m", 'Oops! We have some problems:\n');
-      console.log("\x1b[31m", err);
-    })
+  async function buildBackstopFile(referenceUrl,testUrl){
+
+    //console.log(`${referenceUrl}`+ " StagingLink "+`${testUrl}`);
+      var configFile = await getConfigurationFile();
+      var backstopConfigFile = await getBackstopConfigurationFile();
+      backstopConfigFile = await assignViewports(configFile, backstopConfigFile);
+      backstopConfigFile = await createScenarios(configFile,backstopConfigFile,referenceUrl,testUrl);
+      await createBackstopFile(backstopConfigFile);
+      console.log('\x1b[36m%s\x1b[0m', "Ready to execute Backstop Regression");
+    }
+
+    module.exports.buildBackstopFile = buildBackstopFile;

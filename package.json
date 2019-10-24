@@ -10,8 +10,11 @@
     "@hint/hint-minified-js": "^2.3.9",
     "@hint/hint-no-broken-links": "^4.1.9",
     "@hint/hint-performance-budget": "^2.3.9",
+    "async": "^3.1.0",
     "backstopjs": "^4.3.2",
-    "hint": "^5.3.1"
+    "hint": "^5.3.1",
+    "minimist": "^1.2.0",
+    "pm2": "^4.1.2"
   },
   "devDependencies": {},
   "browserslist": [

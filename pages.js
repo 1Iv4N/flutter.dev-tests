@@ -19,7 +19,7 @@ const pages = [
     },
     {
         name: 'Flutter Get Started',
-        path: '/community'
+        path: '/docs/get-started/install'
     },
     {
         name: 'Flutter Terms',
@@ -29,10 +29,6 @@ const pages = [
         name: 'Flutter Security',
         path: '/security'
     },
-    {
-        name: 'Flutter Subscribe',
-        path: '/subscribe'
-    }
 ]
 
 module.exports = pages;
